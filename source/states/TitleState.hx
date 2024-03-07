@@ -556,6 +556,10 @@ class TitleState extends MusicBeatState
 				case 4:
 					addMoreText('Shadow Mario', 40);
 					addMoreText('Riveren', 40);
+					addMoreText('MA-Jigsaw', 40);
+					addMoreText('mcagabe19', 40);
+					addMoreText('Karimakra', 40);
+					addMoreText('DaffyToons', 40);
 				case 5:
 					deleteCoolText();
 				case 6:
