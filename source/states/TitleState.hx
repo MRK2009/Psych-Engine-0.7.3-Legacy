@@ -77,7 +77,6 @@ class TitleState extends MusicBeatState
 
 		#if MODS_ALLOWED
 		Mods.pushGlobalMods();
-		Mods.loadTopMod();
 		#end
 
 		FlxG.fixedTimestep = false;
