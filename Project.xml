@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Psych Engine 0.7.3" file="PsychEngine" packageName="com.shadowmario.psychengine073" package="com.shadowmario.psychengine073" main="Main" version="0.2.8" company="ShadowMario" />
+	<app title="Friday Night Funkin': Psych Engine" file="PsychEngine" packageName="com.shadowmario.psychengine" package="com.shadowmario.psychengine" main="Main" version="0.2.8" company="ShadowMario" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -25,8 +25,7 @@
 	<define name="LUA_ALLOWED" if="desktop || mobile" unless="hl"/>
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="DISCORD_ALLOWED" if="desktop" unless="hl"/>
-	<define name="LOADING_SCREEN_ALLOWED" />
-	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE THE PSYCH LOGO FROM LOADING SCREEN -->
+	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
 	<define name="VIDEOS_ALLOWED" if="desktop || mobile" unless="32bits || hl || NOVIDEO || rpi"/> <!-- i'll keep this cuz it makes vscode think i don't use videos -->
         <define name="CUSTOM_SHADERS_ALLOWED" if="LUA_ALLOWED"/>
 
@@ -174,25 +173,12 @@
 			<certificate path="key.keystore" password="nullfunni" alias="null" alias-password="nullfunni" unless="debug" />
 
 			<!--Target SDK-->
-			<android target-sdk-version="29" if="EXTERNAL || MEDIA"/>
-
-            <config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" if="EXTERNAL || MEDIA"/>
+			<android target-sdk-version="28" if="EXTERNAL || MEDIA"/> <!-- blame android 11+!!! -->
 		</section>
-
-		<section if="ios">
-			<define name='objc' />
-			<ios linker-flags='-ObjC' />
-		</section>
-
-	<!--Avoid memory leaks with for loops in HScript-->
-	<haxedef name="loop_unroll_max_cost" value="25" />
-	<haxedef name="DISABLED_MACRO_SUPERLATIVE" />
 
 	<!--Macro fixes-->
 	<haxeflag name="--macro" value="allowPackage('flash')" />
 	<haxeflag name="--macro" value="include('my.pack')" />
-	<haxeflag name="--macro" value="macros.Keep.keepClasses()" />
-
 
 	<!-- _________________________________ Custom _______________________________ -->
 
