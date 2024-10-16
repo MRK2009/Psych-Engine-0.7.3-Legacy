@@ -5,18 +5,16 @@ import flixel.math.FlxPoint;
 import mobile.flixel.input.FlxMobileInputManager;
 import haxe.extern.EitherType;
 import mobile.flixel.FlxButton;
-import flixel.util.FlxSave;
 
 class MobileControls extends FlxTypedSpriteGroup<FlxMobileInputManager>
 {
-	public var virtualPad:FlxVirtualPad = new FlxVirtualPad('NONE', 'NONE', NONE);
+	public var virtualPad:FlxVirtualPad = new FlxVirtualPad(NONE, NONE, NONE);
 	public var hitbox:FlxHitbox = new FlxHitbox(NONE);
 	// YOU CAN'T CHANGE PROPERTIES USING THIS EXCEPT WHEN IN RUNTIME!!
 	public var current:CurrentManager;
 
 	public static var mode(get, set):Int;
 	public static var forcedControl:Null<Int>;
-	public static var save:FlxSave;
 
 	public function new(?forceType:Int, ?extra:Bool = true)
 	{
@@ -46,22 +44,22 @@ class MobileControls extends FlxTypedSpriteGroup<FlxMobileInputManager>
 
 	private function initControler(virtualPadMode:Int = 0, ?extra:Bool = true):Void
 	{
-		var extraAction = MobileData.extraActions.get(ClientPrefs.data.extraButtons);
+		var extraAction = Data.extraActions.get(ClientPrefs.data.extraButtons);
 		if (!extra)
 			extraAction = NONE;
 		switch (virtualPadMode)
 		{
 			case 0:
-				virtualPad = new FlxVirtualPad('RIGHT_FULL', 'NONE', extraAction);
+				virtualPad = new FlxVirtualPad(RIGHT_FULL, NONE, extraAction);
 				add(virtualPad);
 			case 1:
-				virtualPad = new FlxVirtualPad('LEFT_FULL', 'NONE', extraAction);
+				virtualPad = new FlxVirtualPad(LEFT_FULL, NONE, extraAction);
 				add(virtualPad);
 			case 2:
-				virtualPad = MobileControls.getCustomMode(new FlxVirtualPad('RIGHT_FULL', 'NONE', extraAction));
+				virtualPad = MobileControls.getCustomMode(new FlxVirtualPad(RIGHT_FULL, NONE, extraAction));
 				add(virtualPad);
 			case 3:
-				virtualPad = new FlxVirtualPad('BOTH', 'NONE', extraAction);
+				virtualPad = new FlxVirtualPad(BOTH, NONE, extraAction);
 				add(virtualPad);
 			case 4:
 				hitbox = new FlxHitbox(extraAction);
@@ -71,38 +69,37 @@ class MobileControls extends FlxTypedSpriteGroup<FlxMobileInputManager>
 
 	public static function setCustomMode(virtualPad:FlxVirtualPad):Void
 	{
-		if (save.data.buttons == null)
+		if (FlxG.save.data.buttons == null)
 		{
-			save.data.buttons = new Array();
+			FlxG.save.data.buttons = new Array();
 			for (buttons in virtualPad)
-				save.data.buttons.push(FlxPoint.get(buttons.x, buttons.y));
+				FlxG.save.data.buttons.push(FlxPoint.get(buttons.x, buttons.y));
 		}
 		else
 		{
 			var tempCount:Int = 0;
 			for (buttons in virtualPad)
 			{
-				save.data.buttons[tempCount] = FlxPoint.get(buttons.x, buttons.y);
+				FlxG.save.data.buttons[tempCount] = FlxPoint.get(buttons.x, buttons.y);
 				tempCount++;
 			}
 		}
 
-		save.flush();
+		FlxG.save.flush();
 	}
 
 	public static function getCustomMode(virtualPad:FlxVirtualPad):FlxVirtualPad
 	{
 		var tempCount:Int = 0;
 
-		if (save.data.buttons == null)
+		if (FlxG.save.data.buttons == null)
 			return virtualPad;
 
 		for (buttons in virtualPad)
 		{
-			if (save.data.buttons[tempCount] != null)
-			{
-				buttons.x = save.data.buttons[tempCount].x;
-				buttons.y = save.data.buttons[tempCount].y;
+			if(FlxG.save.data.buttons[tempCount] != null){
+				buttons.x = FlxG.save.data.buttons[tempCount].x;
+				buttons.y = FlxG.save.data.buttons[tempCount].y;
 			}
 			tempCount++;
 		}
@@ -129,8 +126,8 @@ class MobileControls extends FlxTypedSpriteGroup<FlxMobileInputManager>
 
 	static function set_mode(mode:Int = 0)
 	{
-		save.data.mobileControlsMode = mode;
-		save.flush();
+		FlxG.save.data.mobileControlsMode = mode;
+		FlxG.save.flush();
 		return mode;
 	}
 
@@ -139,17 +136,16 @@ class MobileControls extends FlxTypedSpriteGroup<FlxMobileInputManager>
 		if (forcedControl != null)
 			return forcedControl;
 
-		if (save.data.mobileControlsMode == null)
+		if (FlxG.save.data.mobileControlsMode == null)
 		{
-			save.data.mobileControlsMode = 0;
-			save.flush();
+			FlxG.save.data.mobileControlsMode = 0;
+			FlxG.save.flush();
 		}
 
-		return save.data.mobileControlsMode;
+		return FlxG.save.data.mobileControlsMode;
 	}
 
-	public function updateButtonsColors()
-	{
+	public function updateButtonsColors() {
 		// Dynamic Controls Color
 		var buttonsColors:Array<FlxColor> = [];
 		var data:Dynamic;
@@ -173,16 +169,22 @@ class MobileControls extends FlxTypedSpriteGroup<FlxMobileInputManager>
 		current.buttonDown.color = buttonsColors[1];
 		current.buttonUp.color = buttonsColors[2];
 		current.buttonRight.color = buttonsColors[3];
-	}
-
-	public static function initSave() {
-		save = new FlxSave();
-		save.bind('MobileControls', CoolUtil.getSavePath());
+		
+		/*if(mode == 4){
+			hitbox.buttonLeft.color = buttonsColors[0];
+			hitbox.buttonDown.color = buttonsColors[1];
+			hitbox.buttonUp.color = buttonsColors[2];
+			hitbox.buttonRight.color = buttonsColors[3];
+		} else {
+			virtualPad.buttonLeft.color = buttonsColors[0];
+			virtualPad.buttonDown.color = buttonsColors[1];
+			virtualPad.buttonUp.color = buttonsColors[2];
+			virtualPad.buttonRight.color = buttonsColors[3];
+		}*/
 	}
 }
 
-class CurrentManager
-{
+class CurrentManager {
 	public var buttonLeft:FlxButton;
 	public var buttonDown:FlxButton;
 	public var buttonUp:FlxButton;
@@ -191,10 +193,8 @@ class CurrentManager
 	public var buttonExtra2:FlxButton;
 	public var target:FlxMobileInputManager;
 
-	public function new(control:MobileControls)
-	{
-		if (MobileControls.mode == 4)
-		{
+	public function new(control:MobileControls){
+		if(MobileControls.mode == 4) {
 			target = control.hitbox;
 			buttonLeft = control.hitbox.buttonLeft;
 			buttonDown = control.hitbox.buttonDown;
@@ -202,9 +202,7 @@ class CurrentManager
 			buttonRight = control.hitbox.buttonRight;
 			buttonExtra = control.hitbox.buttonExtra;
 			buttonExtra2 = control.hitbox.buttonExtra2;
-		}
-		else
-		{
+		} else {
 			target = control.virtualPad;
 			buttonLeft = control.virtualPad.buttonLeft;
 			buttonDown = control.virtualPad.buttonDown;
