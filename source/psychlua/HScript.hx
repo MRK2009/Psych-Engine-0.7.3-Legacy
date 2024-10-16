@@ -87,7 +87,6 @@ class HScript extends SScript
 		set('FlxG', flixel.FlxG);
 		set('FlxMath', flixel.math.FlxMath);
 		set('FlxSprite', flixel.FlxSprite);
-		set('FlxText', flixel.text.FlxText);
 		set('FlxCamera', flixel.FlxCamera);
 		set('PsychCamera', backend.PsychCamera);
 		set('FlxTimer', flixel.util.FlxTimer);
@@ -98,7 +97,6 @@ class HScript extends SScript
 		set('PlayState', PlayState);
 		set('Paths', Paths);
 		set('SUtil', SUtil);
-                set('MobileControls', mobile.objects.MobileControls);
 		set('Conductor', Conductor);
 		set('ClientPrefs', ClientPrefs);
 		#if ACHIEVEMENTS_ALLOWED
@@ -114,8 +112,8 @@ class HScript extends SScript
 		set('ShaderFilter', openfl.filters.ShaderFilter);
 		set('StringTools', StringTools);
 		#if VIDEOS_ALLOWED
-		set('VideoSprite', objects.VideoSprite);
-		set('Video', objects.Video);
+		set('VideoSpriteManager', backend.VideoSpriteManager);
+		set('VideoManager', backend.VideoManager);
 		#end
 		#if flxanimate
 		set('FlxAnimate', FlxAnimate);
@@ -287,7 +285,6 @@ class HScript extends SScript
 		#end
 		set('this', this);
 		set('game', FlxG.state);
-		set('controls', Controls.instance);
 
 		set('buildTarget', LuaUtils.getBuildTarget());
 		set('customSubstate', CustomSubstate.instance);
@@ -300,16 +297,17 @@ class HScript extends SScript
 		set('Function_StopAll', LuaUtils.Function_StopAll);
 
 		set('add', FlxG.state.add);
-        set('insert', FlxG.state.insert);
-        set('remove', FlxG.state.remove);
-        if(PlayState.instance == FlxG.state)
-        {
-        set('addBehindGF', PlayState.instance.addBehindGF);
-        set('addBehindDad', PlayState.instance.addBehindDad);
-        set('addBehindBF', PlayState.instance.addBehindBF);
-        setSpecialObject(PlayState.instance, false, PlayState.instance.instancesExclude);
-        }
-        #if LUA_ALLOWED
+                set('insert', FlxG.state.insert);
+                set('remove', FlxG.state.remove);
+
+                if(PlayState.instance == FlxG.state)
+                {
+                        set('addBehindGF', PlayState.instance.addBehindGF);
+                        set('addBehindDad', PlayState.instance.addBehindDad);
+                        set('addBehindBF', PlayState.instance.addBehindBF);
+                        setSpecialObject(PlayState.instance, false, PlayState.instance.instancesExclude);
+                }
+                #if LUA_ALLOWED
 		set("addVirtualPad", (DPadMode:String, ActionMode:String) -> {
 			PlayState.instance.makeLuaVirtualPad(DPadMode, ActionMode);
 			PlayState.instance.addLuaVirtualPad();

@@ -647,8 +647,7 @@ class FunkinLua {
 
 		set("mouseClicked", function(button:String) {
 			var click:Bool = FlxG.mouse.justPressed;
-			switch(button.trim().toLowerCase())
-			{
+			switch(button){
 				case 'middle':
 					click = FlxG.mouse.justPressedMiddle;
 				case 'right':
@@ -658,8 +657,7 @@ class FunkinLua {
 		});
 		set("mousePressed", function(button:String) {
 			var press:Bool = FlxG.mouse.pressed;
-			switch(button.trim().toLowerCase())
-			{
+			switch(button){
 				case 'middle':
 					press = FlxG.mouse.pressedMiddle;
 				case 'right':
@@ -669,8 +667,7 @@ class FunkinLua {
 		});
 		set("mouseReleased", function(button:String) {
 			var released:Bool = FlxG.mouse.justReleased;
-			switch(button.trim().toLowerCase())
-			{
+			switch(button){
 				case 'middle':
 					released = FlxG.mouse.justReleasedMiddle;
 				case 'right':
@@ -998,11 +995,11 @@ class FunkinLua {
 		});
 
 		set("makeGraphic", function(obj:String, width:Int = 256, height:Int = 256, color:String = 'FFFFFF') {
-			var spr:FlxSprite = LuaUtils.getObjectDirectly(obj, false, false);
+			var spr:FlxSprite = LuaUtils.getObjectDirectly(obj, false);
 			if(spr != null) spr.makeGraphic(width, height, CoolUtil.colorFromString(color));
 		});
 		set("addAnimationByPrefix", function(obj:String, name:String, prefix:String, framerate:Int = 24, loop:Bool = true) {
-			var obj:Dynamic = LuaUtils.getObjectDirectly(obj, false, false);
+			var obj:Dynamic = LuaUtils.getObjectDirectly(obj, false);
 			if(obj != null && obj.animation != null)
 			{
 				obj.animation.addByPrefix(name, prefix, framerate, loop);
@@ -1017,7 +1014,7 @@ class FunkinLua {
 		});
 
 		set("addAnimation", function(obj:String, name:String, frames:Array<Int>, framerate:Int = 24, loop:Bool = true) {
-			var obj:Dynamic = LuaUtils.getObjectDirectly(obj, false, false);
+			var obj:Dynamic = LuaUtils.getObjectDirectly(obj, false);
 			if(obj != null && obj.animation != null)
 			{
 				obj.animation.add(name, frames, framerate, loop);
@@ -1035,7 +1032,7 @@ class FunkinLua {
 
 		set("playAnim", function(obj:String, name:String, forced:Bool = false, ?reverse:Bool = false, ?startFrame:Int = 0)
 		{
-			var obj:Dynamic = LuaUtils.getObjectDirectly(obj, false, false);
+			var obj:Dynamic = LuaUtils.getObjectDirectly(obj, false);
 			if(obj.playAnim != null)
 			{
 				obj.playAnim(name, forced, reverse, startFrame);
@@ -1050,7 +1047,7 @@ class FunkinLua {
 			return false;
 		});
 		set("addOffset", function(obj:String, anim:String, x:Float, y:Float) {
-			var obj:Dynamic = LuaUtils.getObjectDirectly(obj, false, false);
+			var obj:Dynamic = LuaUtils.getObjectDirectly(obj, false);
 			if(obj != null && obj.addOffset != null)
 			{
 				obj.addOffset(anim, x, y);
@@ -1060,8 +1057,8 @@ class FunkinLua {
 		});
 
 		set("setScrollFactor", function(obj:String, scrollX:Float, scrollY:Float) {
-			if(game.getLuaObject(obj,false,true)!=null) {
-				game.getLuaObject(obj,false,true).scrollFactor.set(scrollX, scrollY);
+			if(game.getLuaObject(obj,false)!=null) {
+				game.getLuaObject(obj,false).scrollFactor.set(scrollX, scrollY);
 				return;
 			}
 
@@ -1179,7 +1176,7 @@ class FunkinLua {
 		});
 
 		set("setObjectCamera", function(obj:String, camera:String = '') {
-			var real:FlxBasic = game.getLuaObject(obj);
+			var real = game.getLuaObject(obj);
 			if(real!=null){
 				real.cameras = [LuaUtils.cameraFromString(camera)];
 				return true;
@@ -1338,7 +1335,6 @@ class FunkinLua {
 				if(game.modchartSounds.exists(tag)) {
 					game.modchartSounds.get(tag).stop();
 				}
-
 				game.modchartSounds.set(tag, FlxG.sound.play(Paths.sound(sound), volume, false, null, true, function() {
 					game.modchartSounds.remove(tag);
 					game.callOnLuas('onSoundFinished', [tag]);
@@ -1477,7 +1473,6 @@ class FunkinLua {
 		#if HSCRIPT_ALLOWED HScript.implement(this); #end
 		#if ACHIEVEMENTS_ALLOWED Achievements.addLuaCallbacks(this); #end
 		#if flxanimate FlxAnimateFunctions.implement(this); #end
-		#if VIDEOS_ALLOWED VideoFunctions.implement(this); #end
 		ReflectionFunctions.implement(this);
 		TextFunctions.implement(this);
 		ExtraFunctions.implement(this);
@@ -1498,7 +1493,7 @@ class FunkinLua {
 			var resultStr:String = Lua.tostring(lua, result);
 			if(resultStr != null && result != 0) {
 				trace(resultStr);
-				#if (windows || android || js || wasm)
+				#if (windows || mobile || js || wasm)
 				SUtil.showPopUp(resultStr, 'Error on lua script!');
 				#else
 				luaTrace('$scriptName\n$resultStr', true, false, FlxColor.RED);
@@ -1689,12 +1684,8 @@ class FunkinLua {
 		#if (MODS_ALLOWED && !flash && sys)
 		if(runtimeShaders.exists(name))
 		{
-			var shaderData:Array<String> = runtimeShaders.get(name);
-			if(shaderData != null && (shaderData[0] != null || shaderData[1] != null))
-			{
-				luaTrace('Shader $name was already initialized!');
-				return true;
-			}
+			luaTrace('Shader $name was already initialized!');
+			return true;
 		}
 
 		var foldersToCheck:Array<String> = [Paths.mods('shaders/')];
