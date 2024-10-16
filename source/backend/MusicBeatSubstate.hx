@@ -51,7 +51,7 @@ class MusicBeatSubstate extends FlxSubState
 				remove(mobileControls);
 		}
 
-	public function addVirtualPad(DPad:String, Action:String)
+	public function addVirtualPad(DPad:FlxDPadMode, Action:FlxActionMode)
 	{
 		virtualPad = new FlxVirtualPad(DPad, Action);
 		virtualPad.alpha = ClientPrefs.data.controlsAlpha;

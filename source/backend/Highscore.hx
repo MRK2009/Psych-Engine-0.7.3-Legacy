@@ -23,16 +23,13 @@ class Highscore
 	{
 		var daSong:String = formatSong(song, diff);
 
-		if (songScores.exists(daSong))
-		{
-			if (songScores.get(daSong) < score)
-			{
+		if (songScores.exists(daSong)) {
+			if (songScores.get(daSong) < score) {
 				setScore(daSong, score);
 				if(rating >= 0) setRating(daSong, rating);
 			}
 		}
-		else
-		{
+		else {
 			setScore(daSong, score);
 			if(rating >= 0) setRating(daSong, rating);
 		}
@@ -47,7 +44,8 @@ class Highscore
 			if (weekScores.get(daWeek) < score)
 				setWeekScore(daWeek, score);
 		}
-		else setWeekScore(daWeek, score);
+		else
+			setWeekScore(daWeek, score);
 	}
 
 	/**
@@ -111,12 +109,16 @@ class Highscore
 	public static function load():Void
 	{
 		if (FlxG.save.data.weekScores != null)
+		{
 			weekScores = FlxG.save.data.weekScores;
-
+		}
 		if (FlxG.save.data.songScores != null)
+		{
 			songScores = FlxG.save.data.songScores;
-
+		}
 		if (FlxG.save.data.songRating != null)
+		{
 			songRating = FlxG.save.data.songRating;
+		}
 	}
 }

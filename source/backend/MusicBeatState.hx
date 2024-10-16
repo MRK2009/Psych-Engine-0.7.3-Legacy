@@ -28,7 +28,7 @@ class MusicBeatState extends FlxUIState
 	public var camControls:FlxCamera;
 	public var vpadCam:FlxCamera;
 
-	public function addVirtualPad(DPad:String, Action:String)
+	public function addVirtualPad(DPad:FlxDPadMode, Action:FlxActionMode)
 	{
 		virtualPad = new FlxVirtualPad(DPad, Action);
 		virtualPad.alpha = ClientPrefs.data.controlsAlpha;
