@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Psych Engine" file="PsychEngine" packageName="com.shadowmario.psychengine" package="com.shadowmario.psychengine" main="Main" version="0.2.8" company="ShadowMario" />
+	<app title="Psych Engine 0.7.3 Legacy" file="PsychEngine" packageName="com.shadowmario.psychenginelegacy" package="com.shadowmario.psychenginelegacy" main="Main" version="0.2.8" company="ShadowMario" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -173,7 +173,7 @@
 			<certificate path="key.keystore" password="nullfunni" alias="null" alias-password="nullfunni" unless="debug" />
 
 			<!--Target SDK-->
-			<android target-sdk-version="28" if="EXTERNAL || MEDIA"/> <!-- blame android 11+!!! -->
+			<android target-sdk-version="29" if="EXTERNAL || MEDIA"/> <!-- blame android 11+!!! -->
 		</section>
 
 	<!--Macro fixes-->
