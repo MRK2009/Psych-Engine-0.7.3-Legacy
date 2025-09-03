@@ -2,61 +2,61 @@
   "dependencies": [
     {
       "name": "lime",
-      "type": "git",
-      "dir": null,
-      "ref": "main",
-      "url": "https://github.com/mcagabe19-stuff/lime"
+      "type": "haxelib",
+      "version": "8.0.1"
     },
     {
       "name": "openfl",
       "type": "haxelib",
-      "version": null
+      "version": "9.3.2"
     },
     {
       "name": "flixel",
       "type": "haxelib",
-      "version": null
+      "version": "5.5.0"
     },
     {
       "name": "flixel-addons",
       "type": "haxelib",
-      "version": null
+      "version": "3.2.1"
     },
     {
       "name": "flixel-tools",
       "type": "haxelib",
-      "version": null
+      "version": "1.5.1"
     },
     {
       "name": "flixel-ui",
       "type": "haxelib",
-      "version": null
+      "version": "2.5.0"
     },
     {
       "name": "hxcpp",
       "type": "git",
       "dir": null,
-      "ref": "master",
-      "url": "https://github.com/mcagabe19-stuff/hxcpp"
+      "ref": "main",
+      "url": "https://github.com/HomuHomu833/hxcpp.git"
     },
     {
       "name": "hxCodec",
       "type": "git",
       "dir": null,
       "ref": "main",
-      "url": "https://github.com/mcagabe19-stuff/hxCodec"
+      "url": "https://github.com/polybiusproxy/hxCodec.git"
     },
     {
       "name": "hxvlc",
       "type": "git",
       "dir": null,
       "ref": "main",
-      "url": "https://github.com/mcagabe19-stuff/hxvlc"
+      "url": "https://github.com/MAJigsaw77/hxvlc.git"
     },
     {
       "name": "SScript",
-      "type": "haxelib",
-      "version": null
+      "type": "git",
+      "dir": null,
+      "ref": "main",
+      "url": "https://github.com/th2l-devs/SScript.git"
     },
     {
       "name": "hxcpp-debug-server",
@@ -66,12 +66,14 @@
     {
       "name": "tjson",
       "type": "haxelib",
-      "version": null
+      "version": "1.4.0"
     },
     {
       "name": "hxdiscord_rpc",
-      "type": "haxelib",
-      "version": null
+      "type": "git",
+      "dir": null,
+      "ref": "main",
+      "url": "https://github.com/MAJigsaw77/hxdiscord_rpc.git"
     },
     {
       "name": "linc_luajit",
@@ -89,8 +91,10 @@
     },
     {
       "name": "extension-androidtools",
-      "type": "haxelib",
-      "version": null
+      "type": "git",
+      "dir": null,
+      "ref": "main",
+      "url": "https://github.com/beihu235/extension-androidtools.git"
     }
   ]
 }
