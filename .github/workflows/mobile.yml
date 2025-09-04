@@ -61,7 +61,8 @@ jobs:
           haxelib setup ~/haxelib
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
-          haxelib run lime rebuild hxcpp --quiet
+          haxelib run lime setup ios --quiet
+          haxelib run lime rebuild hxcpp ios -nosign --quiet
           # haxelib run lime rebuild extension-iostools ios -arm64 -final
 
       # - name: Install MobileVLCKit Framework
