@@ -61,8 +61,7 @@ jobs:
           haxelib setup ~/haxelib
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
-          haxelib run lime setup ios --quiet
-          haxelib run lime rebuild hxcpp ios -nosign --quiet
+          haxelib run lime rebuild hxcpp -nosign --quiet
           # haxelib run lime rebuild extension-iostools ios -arm64 -final
 
       # - name: Install MobileVLCKit Framework
@@ -72,7 +71,7 @@ jobs:
           # tar -xf MobileVLCKit-3.5.1-34408b84-e9eceaed.tar.xz
 
       - name: Compile
-        run: haxelib run lime build ios -final
+        run: haxelib run lime build ios -final -Darm64 -Dno-armv7
 
       # - name: Check Code Signing
         # run: cd export/release/ios/build/Release-iphoneos && codesign -dv *.app
