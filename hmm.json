@@ -3,7 +3,9 @@
     {
       "name": "lime",
       "type": "haxelib",
-      "version": "8.1.2"
+      "dir": null,
+      "ref": "main",
+      "url": "https://github.com/MRK2009/lime-EX.git"
     },
     {
       "name": "openfl",
@@ -35,7 +37,7 @@
       "type": "git",
       "dir": null,
       "ref": "main",
-      "url": "https://github.com/th2l-devs/hxcpp.git"
+      "url": "https://github.com/MRK2009/hxcpp.git"
     },
     {
       "name": "hxCodec",
