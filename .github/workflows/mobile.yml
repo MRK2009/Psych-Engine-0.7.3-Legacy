@@ -64,18 +64,9 @@ jobs:
           haxelib run lime rebuild hxcpp --quiet
           haxelib run lime rebuild hx-ios-uikit -arm64 -final
 
-       - name: Install MobileVLCKit Framework
-         run: |
-           cd ${{ github.workspace }}/..
-           wget -q https://download.videolan.org/cocoapods/prod/MobileVLCKit-3.5.1-34408b84-e9eceaed.tar.xz
-           tar -xf MobileVLCKit-3.5.1-34408b84-e9eceaed.tar.xz
-
       - name: Compile
-        run: haxelib run lime build ios -final -Darm64 -Dno-armv7
-
-       - name: Check Code Signing
-         run: cd export/release/ios/build/Release-iphoneos && codesign -dv *.app
-
+        run: haxelib run lime build ios -nosign -final
+       
       - name: Make Ipa
         run: |
           cd export/release/ios/build/Release-iphoneos
