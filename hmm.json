@@ -2,8 +2,10 @@
   "dependencies": [
     {
       "name": "lime",
-      "type": "haxelib",
-      "version": "8.0.1"
+      "type": "git",
+      "dir": null,
+      "ref": "main",
+      "url": "https://github.com/VS-Null/lime.git"
     },
     {
       "name": "openfl",
@@ -35,7 +37,7 @@
       "type": "git",
       "dir": null,
       "ref": "main",
-      "url": "https://github.com/HomuHomu833/hxcpp.git"
+      "url": "https://github.com/VS-Null/hxcpp.git"
     },
     {
       "name": "hxCodec",
@@ -46,10 +48,8 @@
     },
     {
       "name": "hxvlc",
-      "type": "git",
-      "dir": null,
-      "ref": "main",
-      "url": "https://github.com/MAJigsaw77/hxvlc.git"
+      "type": "haxelib",
+      "version": "1.8.1"
     },
     {
       "name": "SScript",
