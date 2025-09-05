@@ -3,9 +3,7 @@
     {
       "name": "lime",
       "type": "haxelib",
-      "dir": null,
-      "ref": "main",
-      "url": "https://github.com/th2l-devs/lime.git"
+      "version": "8.1.2"
     },
     {
       "name": "openfl",
@@ -95,6 +93,11 @@
       "dir": null,
       "ref": "main",
       "url": "https://github.com/beihu235/extension-androidtools.git"
+    },
+    {
+      "name": "hx-ios-uikit",
+      "type": "haxelib",
+      "version": null
     }
   ]
 }
