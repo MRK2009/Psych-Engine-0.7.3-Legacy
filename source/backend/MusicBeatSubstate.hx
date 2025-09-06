@@ -2,7 +2,7 @@ package backend;
 
 import flixel.FlxSubState;
 
-import mobile.flixel.input.FlxVirtualPad;
+import mobile.flixel.FlxVirtualPad;
 
 class MusicBeatSubstate extends FlxSubState
 {
