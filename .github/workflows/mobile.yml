@@ -56,6 +56,11 @@ jobs:
         with:
           haxe-version: 4.3.2
 
+      - name: Setup XCode
+        uses: maxim-lobanov/setup-xcode@master
+        with:
+          xcode-version: '11.4'
+
       - name: Install Libraries
         run: |
           haxelib setup ~/haxelib
