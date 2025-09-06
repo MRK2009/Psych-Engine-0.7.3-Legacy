@@ -64,7 +64,7 @@ jobs:
           haxelib run lime rebuild hxcpp --quiet
           
       - name: Compile
-        run: haxelib run lime build ios -nosign -arm64 -final
+        run: haxelib run lime build ios -nosign -final
        
       - name: Make Ipa
         run: |
