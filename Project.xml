@@ -172,6 +172,8 @@
 			<certificate path="key.keystore" password="nullfunni" alias="null" alias-password="nullfunni" unless="debug" />
 		</section>
 
+	<architecture exclude="armv7" if="ios" />
+
 	<!--Macro fixes-->
 	<haxeflag name="--macro" value="allowPackage('flash')" />
 	<haxeflag name="--macro" value="include('my.pack')" />
