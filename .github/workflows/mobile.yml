@@ -46,7 +46,7 @@ jobs:
           path: export/release/android/bin/app/build/outputs/apk/release/*.apk
           if-no-files-found: error
   iOS:
-    runs-on: [self-hosted, macos]
+    runs-on: macos-13
     steps:
       - name: Checkout
         uses: actions/checkout@main
@@ -55,11 +55,6 @@ jobs:
         uses: krdlab/setup-haxe@master
         with:
           haxe-version: 4.3.2
-
-      - name: Setup XCode
-        uses: maxim-lobanov/setup-xcode@master
-        with:
-          xcode-version: '11.4'
 
       - name: Install Libraries
         run: |
