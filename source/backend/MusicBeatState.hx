@@ -4,6 +4,7 @@ import flixel.addons.ui.FlxUIState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.FlxState;
 import backend.PsychCamera;
+import mobile.flixel.input.FlxVirtualPad;
 
 class MusicBeatState extends FlxUIState
 {
