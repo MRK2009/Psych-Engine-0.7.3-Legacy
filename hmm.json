@@ -2,13 +2,17 @@
   "dependencies": [
     {
       "name": "lime",
-      "type": "haxelib",
-      "version": "8.1.1"
+      "type": "git",
+      "dir": null,
+      "ref": "main",
+      "url": "https://github.com/th2l-devs/lime.git"
     },
     {
       "name": "openfl",
-      "type": "haxelib",
-      "version": "9.3.2"
+      "type": "git",
+      "dir": null,
+      "ref": "develop",
+      "url": "https://github.com/th2l-devs/openfl.git"
     },
     {
       "name": "flixel",
@@ -32,8 +36,10 @@
     },
     {
       "name": "hxcpp",
-      "type": "haxelib",
-      "version": null
+      "type": "git",
+      "dir": null,
+      "ref": "main",
+      "url": "https://github.com/th2l-devs/hxcpp.git"
     },
     {
       "name": "hxCodec",
